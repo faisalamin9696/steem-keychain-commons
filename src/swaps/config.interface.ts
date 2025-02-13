@@ -2,7 +2,7 @@ import { Provider } from './swap.interface';
 
 export interface SwapServerConfig {
   rpc: string[];
-  hiveEngineRpc: string[];
+  steemEngineRpc: string[];
   swaps: SwapConfig;
   priceRefreshIntervalInMinutes: number;
 }

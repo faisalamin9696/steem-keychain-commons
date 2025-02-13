@@ -211,13 +211,13 @@ export type RequestPowerUp = CommonRequestParams & {
   type: KeychainRequestTypes.powerUp;
   username: string;
   recipient: string;
-  hive: string;
+  steem: string;
 };
 
 export type RequestPowerDown = CommonRequestParams & {
   type: KeychainRequestTypes.powerDown;
   username: string;
-  hive_power: string;
+  steem_power: string;
 };
 
 export type RequestCreateClaimedAccount = CommonRequestParams & {
@@ -354,7 +354,7 @@ export type RequestId = { request_id: number };
 
 export type KeychainRequest = KeychainRequestData & RequestId;
 
-export type HiveErrorMessage = {
+export type SteemErrorMessage = {
   message: string;
   code: number;
   data?: any;

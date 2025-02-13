@@ -1,7 +1,7 @@
 {
-  "name": "hive-keychain-commons",
-  "version": "1.5.0",
-  "description": "Platform-agnostic functions used in Hive Keychain mobile and extensions",
+  "name": "steem-keychain-commons",
+  "version": "1.0.0",
+  "description": "Platform-agnostic functions used in Steem Keychain mobile and extensions",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -19,22 +19,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stoodkev/hive-keychain-commons.git"
+    "url": "git+https://github.com/faisalamin9696/steem-keychain-commons.git"
   },
   "keywords": [
-    "hive",
+    "steem",
     "keychain",
     "commons",
     "blockchain",
     "crypto",
     "wallet"
   ],
-  "author": "stoodkev",
+  "author": "faisalamin9696",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/stoodkev/hive-keychain-commons/issues"
+    "url": "https://github.com/faisalamin9696/steem-keychain-commons/issues"
   },
-  "homepage": "https://github.com/stoodkev/hive-keychain-commons#readme",
+  "homepage": "https://github.com/faisalamin9696/steem-keychain-commons#readme",
   "devDependencies": {
     "@types/bs58": "^4.0.4",
     "@types/bytebuffer": "^5.0.44",
@@ -47,10 +47,10 @@
     "typescript": "^4.5.2"
   },
   "dependencies": {
-    "@hiveio/dhive": "^1.2.8",
+    "@hiveio/dhive": "https://github.com/faisalamin9696/dhive",
     "bs58": "^4.0.1",
     "crypto-js": "^4.2.0",
-    "hive-tx": "^6.0.4",
+    "hive-tx": "github:faisalamin9696/hive-tx-js",
     "jsbi": "^4.3.0",
     "moment": "^2.30.1",
     "secp256k1": "^5.0.1",

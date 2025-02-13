@@ -56,7 +56,7 @@ const checkStatus = (id: string, type: VscHistoryType): Promise<VscStatus> => {
 const fetchHistory = async (username: string): Promise<VscHistoryResponse> => {
   const query = `{
     findLedgerTXs(
-      filterOptions: {byToFrom: "hive:${username}"}
+      filterOptions: {byToFrom: "steem:${username}"}
     ) {
       txs {
         amount

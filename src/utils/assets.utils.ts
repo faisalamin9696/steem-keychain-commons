@@ -9,14 +9,16 @@ export class Asset {
     this.symbol = symbol;
   }
   /**
-   * Create a new Asset instance from a string, e.g. `42.000 HIVE`.
+   * Create a new Asset instance from a string, e.g. `42.000 STEEM`.
    */
   static fromString = (str: string, expectedSymbol?: AssetSymbol) => {
     const _a = str.split(' ');
     const amountString = _a[0];
     const symbol = _a[1];
     if (
-      !['HIVE', 'VESTS', 'HBD', 'TESTS', 'TBD', 'SBD', 'STEEM'].includes(symbol)
+      !['STEEM', 'VESTS', 'HBD', 'TESTS', 'TBD', 'SBD', 'STEEM'].includes(
+        symbol,
+      )
     ) {
       throw new Error('Invalid asset symbol: ' + symbol);
     }
@@ -79,8 +81,6 @@ export class Asset {
     switch (this.symbol) {
       case 'TESTS':
       case 'TBD':
-      case 'HIVE':
-      case 'HBD':
       case 'SBD':
       case 'STEEM':
         return 3;
@@ -90,7 +90,7 @@ export class Asset {
   };
 
   /**
-   * Return a string representation of this asset, e.g. `42.000 HIVE`.
+   * Return a string representation of this asset, e.g. `42.000 STEEM`.
    */
   toString = () => {
     return this.amount.toFixed(this.getPrecision()) + ' ' + this.symbol;

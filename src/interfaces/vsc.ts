@@ -15,8 +15,8 @@ export enum VscLedgerType {
 }
 
 export enum VscToken {
-  HIVE = 'HIVE',
-  HBD = 'HBD',
+  STEEM = 'STEEM',
+  SBD = 'SBD',
 }
 
 export type VscHistoryResponse = {
