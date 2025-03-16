@@ -54,7 +54,7 @@ export class Asset {
    */
   static min = (a: Asset, b: Asset) => {
     if (a.symbol !== b.symbol)
-      throw 'can not compare assets with different symbols';
+      throw new Error('can not compare assets with different symbols');
 
     return a.amount < b.amount ? a : b;
   };
@@ -63,7 +63,7 @@ export class Asset {
    */
   static max = (a: Asset, b: Asset) => {
     if (a.symbol !== b.symbol)
-      throw 'can not compare assets with different symbols';
+      throw new Error('can not compare assets with different symbols');
 
     return a.amount > b.amount ? a : b;
   };
@@ -94,7 +94,7 @@ export class Asset {
   add = (amount: number | Asset | string) => {
     const other = Asset.from(amount, this.symbol);
     if (this.symbol !== other.symbol)
-      throw 'can not add with different symbols';
+      throw new Error('can not add with different symbols');
     return new Asset(this.amount + other.amount, this.symbol);
   };
   /**
@@ -103,7 +103,7 @@ export class Asset {
   subtract = (amount: number | Asset | string) => {
     const other = Asset.from(amount, this.symbol);
     if (this.symbol !== other.symbol)
-      throw 'can not subtract with different symbols';
+      throw new Error('can not subtract with different symbols');
 
     return new Asset(this.amount - other.amount, this.symbol);
   };
