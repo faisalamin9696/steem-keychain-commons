@@ -1,4 +1,4 @@
-import { PrivateKey } from 'hive-tx';
+import { PrivateKey } from '@steempro/steem-tx-js';
 
 export const getPublicKeyFromPrivateKeyString = (privateKeyS: string) => {
   try {

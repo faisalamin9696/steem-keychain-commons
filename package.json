@@ -1,5 +1,5 @@
 {
-  "name": "steem-keychain-commons",
+  "name": "@steempro/steem-keychain-commons",
   "version": "1.0.0",
   "description": "Platform-agnostic functions used in Steem Keychain mobile and extensions",
   "main": "lib/index.js",
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/faisalamin9696/steem-keychain-commons.git"
+    "url": "ttps://github.com/faisalamin9696/steem-keychain-commons.git"
   },
   "keywords": [
     "steem",
@@ -47,10 +47,11 @@
     "typescript": "^4.5.2"
   },
   "dependencies": {
-    "@hiveio/dhive": "https://github.com/faisalamin9696/dhive",
+    "@steempro/bytebuffer": "^6.0.0",
+    "@steempro/dsteem": "^1.0.3",
+    "@steempro/steem-tx-js": "^1.0.2",
     "bs58": "^4.0.1",
     "crypto-js": "^4.2.0",
-    "hive-tx": "github:faisalamin9696/hive-tx-js",
     "jsbi": "^4.3.0",
     "moment": "^2.30.1",
     "secp256k1": "^5.0.1",

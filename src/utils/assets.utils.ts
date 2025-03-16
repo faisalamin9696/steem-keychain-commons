@@ -1,5 +1,4 @@
-import type { AssetSymbol, PriceType } from '@hiveio/dhive';
-import assert from 'assert';
+import type { AssetSymbol, PriceType } from '@steempro/dsteem';
 
 export class Asset {
   amount: number;
@@ -15,11 +14,7 @@ export class Asset {
     const _a = str.split(' ');
     const amountString = _a[0];
     const symbol = _a[1];
-    if (
-      !['STEEM', 'VESTS', 'HBD', 'TESTS', 'TBD', 'SBD', 'STEEM'].includes(
-        symbol,
-      )
-    ) {
+    if (!['VESTS', 'TESTS', 'TBD', 'SBD', 'STEEM'].includes(symbol)) {
       throw new Error('Invalid asset symbol: ' + symbol);
     }
     if (expectedSymbol && symbol !== expectedSymbol) {
@@ -58,20 +53,18 @@ export class Asset {
    * Return the smaller of the two assets.
    */
   static min = (a: Asset, b: Asset) => {
-    assert(
-      a.symbol === b.symbol,
-      'can not compare assets with different symbols',
-    );
+    if (a.symbol !== b.symbol)
+      throw 'can not compare assets with different symbols';
+
     return a.amount < b.amount ? a : b;
   };
   /**
    * Return the larger of the two assets.
    */
   static max = (a: Asset, b: Asset) => {
-    assert(
-      a.symbol === b.symbol,
-      'can not compare assets with different symbols',
-    );
+    if (a.symbol !== b.symbol)
+      throw 'can not compare assets with different symbols';
+
     return a.amount > b.amount ? a : b;
   };
   /**
@@ -100,7 +93,8 @@ export class Asset {
    */
   add = (amount: number | Asset | string) => {
     const other = Asset.from(amount, this.symbol);
-    assert(this.symbol === other.symbol, 'can not add with different symbols');
+    if (this.symbol !== other.symbol)
+      throw 'can not add with different symbols';
     return new Asset(this.amount + other.amount, this.symbol);
   };
   /**
@@ -108,32 +102,32 @@ export class Asset {
    */
   subtract = (amount: number | Asset | string) => {
     const other = Asset.from(amount, this.symbol);
-    assert(
-      this.symbol === other.symbol,
-      'can not subtract with different symbols',
-    );
+    if (this.symbol !== other.symbol)
+      throw 'can not subtract with different symbols';
+
     return new Asset(this.amount - other.amount, this.symbol);
   };
+
   /**
    * Return a new Asset with the amount multiplied by factor.
    */
   multiply = (factor: number | Asset | string) => {
     const other = Asset.from(factor, this.symbol);
-    assert(
-      this.symbol === other.symbol,
-      'can not multiply with different symbols',
-    );
+    if (this.symbol !== other.symbol) {
+      throw new Error('can not multiply with different symbols');
+    }
     return new Asset(this.amount * other.amount, this.symbol);
   };
+
   /**
    * Return a new Asset with the amount divided.
    */
   divide = (divisor: number | Asset | string) => {
     const other = Asset.from(divisor, this.symbol);
-    assert(
-      this.symbol === other.symbol,
-      'can not divide with different symbols',
-    );
+    if (this.symbol !== other.symbol) {
+      throw new Error('can not divide with different symbols');
+    }
+
     return new Asset(this.amount / other.amount, this.symbol);
   };
   /**
@@ -158,14 +152,12 @@ export class Price {
   constructor(base: Asset, quote: Asset) {
     this.base = base;
     this.quote = quote;
-    assert(
-      base.amount !== 0 && quote.amount !== 0,
-      'base and quote assets must be non-zero',
-    );
-    assert(
-      base.symbol !== quote.symbol,
-      'base and quote can not have the same symbol',
-    );
+    if (base.amount === 0 || quote.amount === 0) {
+      throw new Error('base and quote assets must be non-zero');
+    }
+    if (base.symbol === quote.symbol) {
+      throw new Error('base and quote can not have the same symbol');
+    }
   }
   /**
    * Convenience to create new Price.
@@ -192,13 +184,17 @@ export class Price {
    */
   convert = (asset: Asset) => {
     if (asset.symbol === this.base.symbol) {
-      assert(this.base.amount > 0);
+      if (this.base.amount <= 0) {
+        throw new Error('Base amount must be greater than zero');
+      }
       return new Asset(
         (asset.amount * this.quote.amount) / this.base.amount,
         this.quote.symbol,
       );
     } else if (asset.symbol === this.quote.symbol) {
-      assert(this.quote.amount > 0);
+      if (this.quote.amount <= 0) {
+        throw new Error('Quote amount must be greater than zero');
+      }
       return new Asset(
         (asset.amount * this.base.amount) / this.quote.amount,
         this.base.symbol,

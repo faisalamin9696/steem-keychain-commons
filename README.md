@@ -1,3 +1,3 @@
-# hive-keychain-commons
+# steem-keychain-commons
 
 Platform agnostic interfaces and functions used in Steem Keychain mobile, extensions and other services.
